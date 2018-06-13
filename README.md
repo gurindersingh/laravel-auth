@@ -95,12 +95,13 @@ return [
     ],
 
     // validation rules for registeration
+    // Note: Do not delete data field, its required for registration
     'registration_validateion_rules' => [
         'first_name' => 'required|string',
         'last_name'  => 'required|string',
         'email'      => 'required|string|email|max:255|unique:users',
         'password'   => 'required|string|min:6|max:255|confirmed',
-        'data'       => 'string'
+        'data'       => 'string' // Do not delete this field
     ],
 
     // Redirect path after user is successfulle logged in
