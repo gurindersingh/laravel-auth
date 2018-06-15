@@ -3,10 +3,9 @@
 namespace Gurinder\LaravelAuth\Http\Controllers;
 
 
-use Gurinder\LaravelAuth\Notifications\ConfirmEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Gurinder\LaravelAuth\Http\Controller;
+use Gurinder\LaravelAuth\Notifications\ConfirmEmail;
 
 class EmailVerificationController extends Controller
 {

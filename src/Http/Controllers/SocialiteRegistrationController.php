@@ -4,9 +4,8 @@ namespace Gurinder\LaravelAuth\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use Gurinder\LaravelAuth\Http\Controller;
-use Gurinder\LaravelAuth\Http\Controllers\Traits\Registerable;
 use Illuminate\Support\Facades\Hash;
+use Gurinder\LaravelAuth\Http\Controllers\Traits\Registerable;
 
 class SocialiteRegistrationController extends Controller
 {

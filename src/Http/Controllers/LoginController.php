@@ -3,7 +3,6 @@
 namespace Gurinder\LaravelAuth\Http\Controllers;
 
 
-use Gurinder\LaravelAuth\Http\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller

@@ -5,7 +5,6 @@ namespace Gurinder\LaravelAuth\Http\Controllers;
 
 use Google_Service_People;
 use Laravel\Socialite\Facades\Socialite;
-use Gurinder\LaravelAuth\Http\Controller;
 use Gurinder\LaravelAuth\Requests\SocialiteRequest;
 
 class SocialiteController extends Controller

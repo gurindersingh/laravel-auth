@@ -3,7 +3,6 @@
 namespace Gurinder\LaravelAuth\Http\Controllers;
 
 
-use Gurinder\LaravelAuth\Http\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Gurinder\LaravelAuth\Http\Controllers\Traits\Registerable;
 

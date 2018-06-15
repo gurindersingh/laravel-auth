@@ -3,8 +3,8 @@
 namespace Gurinder\LaravelAuth;
 
 
-use Gurinder\LaravelAuth\Middlewares\ConfirmedEmail;
 use Illuminate\Support\ServiceProvider;
+use Gurinder\LaravelAuth\Middlewares\ConfirmedEmail;
 
 class AuthServiceProvider extends ServiceProvider
 {
