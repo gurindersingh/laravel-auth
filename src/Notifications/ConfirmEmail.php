@@ -35,7 +35,12 @@ class ConfirmEmail extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $confirmationLink = $this->getEmailVerificationLink($notifiable);
+        $data = encrypt(base64_encode(json_encode([
+            'email' => $notifiable->email,
+            'token' => $notifiable->email_verification_token
+        ])));
+
+        $confirmationLink = route('email.confirmation.confirm', $data);
 
         $fromName = config('gauth.email_from.name') ?? config('app.name');
 
@@ -48,16 +53,4 @@ class ConfirmEmail extends Notification implements ShouldQueue
 
     }
 
-
-    protected function getEmailVerificationLink($user)
-    {
-        $data = [
-            'email' => $user->email,
-            'token' => $user->email_verification_token
-        ];
-
-        $data = encrypt(base64_encode(json_encode($data)));
-
-        return route('email.confirmation.confirm', $data);
-    }
 }

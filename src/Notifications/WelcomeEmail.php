@@ -46,17 +46,4 @@ class WelcomeEmail extends Notification implements ShouldQueue
             ->action('Check out site', url(config('gauth.redirect_path_after_login')));
 
     }
-
-
-    protected function getEmailVerificationLink($user)
-    {
-        $data = [
-            'email' => $user->email,
-            'token' => $user->email_verification_token
-        ];
-
-        $data = encrypt(base64_encode(json_encode($data)));
-
-        return route('email.confirmation.confirm', $data);
-    }
 }

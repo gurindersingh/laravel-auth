@@ -18,6 +18,17 @@ php artisan vendor:publish --tag="gauth::views"
 php artisan vendor:publish --tag="gauth::config"
 ```
 ### Step 3
+Add following to your User Model Schema
+```php
+Schema::create('users', function (Blueprint $table) {
+    ...
+    $table->boolean('email_verified')->default(false);
+    $table->string('email_verification_token')->nullable();
+    ...
+});
+```
+
+### Step 4
 Get cliend ids and secret for your applications and put in .env file
 ```bash
 FACEBOOK_APP_ID=
@@ -40,7 +51,7 @@ GITHUB_CLIENT_SECRET=
 SOCIALITE_GITHUB_CALLBACK="/socialite/github/callback"
 ```
 
-### Step 4
+### Step 5
 Add Social Providers to `config/service.php`
 ```php
 return [
@@ -79,7 +90,7 @@ return [
 
 ];
 ```
-### Step 5 
+### Step 6
 Configure plugin
 NOTE: Make sure default role is present in database (If you want you can also use `gurinder/laravel-acl`)
 ```php

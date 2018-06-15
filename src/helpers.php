@@ -1,25 +1,5 @@
 <?php
 
-if (!function_exists('generateEmailConfirmationTokenForUser')) {
-
-    /**
-     * @param $user
-     * @return mixed
-     */
-    function generateEmailConfirmationTokenForUser($user)
-    {
-        $tokenString = $user->email . '-' . str_random(20) . '-' . time() . $user->id;
-
-        $user->update([
-            'email_verification_token' => hash_hmac('sha256', $tokenString, config('app.key'))
-        ]);
-
-        return $user->fresh();
-    }
-
-}
-
-
 if (!function_exists('removeQueryFromUrl')) {
 
     /**

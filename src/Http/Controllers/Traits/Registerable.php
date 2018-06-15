@@ -13,18 +13,39 @@ use Gurinder\LaravelAuth\Notifications\WelcomeEmail;
 trait Registerable
 {
 
+    /**
+     * @var
+     */
     protected $rules;
 
+    /**
+     * @var
+     */
     protected $request;
 
+    /**
+     * @var
+     */
     protected $userModel;
 
+    /**
+     * @var
+     */
     protected $nameFields;
 
+    /**
+     * @var null
+     */
     protected $avatarUrl = null;
 
+    /**
+     * @var null
+     */
     protected $defaultRole = null;
 
+    /**
+     * @var bool
+     */
     protected $emailVerified = false;
 
     /**
@@ -35,6 +56,10 @@ trait Registerable
         $this->emailVerified = $emailVerified;
     }
 
+    /**
+     * @param null $defaultRole
+     * @return $this
+     */
     public function setDefaultRole($defaultRole = null)
     {
         $this->defaultRole = $defaultRole ?? config('gauth.default_roles');
@@ -94,19 +119,8 @@ trait Registerable
      */
     protected function create($data = null)
     {
-        if (!$data) {
-            $data = [
-                'email'          => $this->request->email,
-                'password'       => Hash::make($this->request->password),
-                'email_verified' => $this->emailVerified
-            ];
 
-            foreach ($this->nameFields as $nameField) {
-                $data[$nameField] = $this->request->$nameField;
-            }
-        }
-
-        $user = $this->userModel->create($data);
+        $user = $this->userModel->create($this->getAttributes($data));
 
         if (method_exists($user, 'assignRole') && $this->defaultRole) {
             $user->assignRole($this->defaultRole);
@@ -142,12 +156,42 @@ trait Registerable
             return redirect(config('gauth.redirect_path_after_email_confirmation'));
         }
 
-        // return view('gauth::emails.confirm', compact('user'));
         return redirect()->route('email.confirmation.form');
     }
 
+    /**
+     * @return bool
+     */
     protected function registerationOpen()
     {
         return (boolean)config('gauth.registration_open', true);
     }
+
+    /**
+     * @param null $data
+     * @return array|null
+     */
+    protected function getAttributes($data = null)
+    {
+        if (!$data) {
+            $data = [
+                'email'          => $this->request->email,
+                'password'       => Hash::make($this->request->password),
+                'email_verified' => $this->emailVerified
+            ];
+
+            foreach ($this->nameFields as $nameField) {
+                $data[$nameField] = $this->request->$nameField;
+            }
+        }
+
+        $data['email_verification_token'] = optional($data)['email_verified'] ? null : str_random(15) . time();
+
+        unset($data['password_confirmation']);
+
+        $data['password'] = Hash::needsRehash($data['password']) ? Hash::make($data['password']) : $data['password'];
+
+        return $data;
+    }
+
 }

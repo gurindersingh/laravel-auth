@@ -20,9 +20,9 @@ class EmailVerificationController extends Controller
         }
     }
 
-    public function confirm($token)
+    public function confirm($data)
     {
-        $data = json_decode(base64_decode(decrypt($token)));
+        $data = json_decode(base64_decode(decrypt($data)));
 
         $user = $this->userModel->where('email', $data->email)->where('email_verification_token', $data->token)->firstOrFail();
 
@@ -61,9 +61,11 @@ class EmailVerificationController extends Controller
             return redirect()->back()->withErrors(['email' => 'Email is already verified']);
         }
 
-        $user = generateEmailConfirmationTokenForUser($user);
+        $user->update([
+            'email_verification_token' => str_random(15) . time()
+        ]);
 
-        $user->notify(new ConfirmEmail());
+        $user->freash()->notify(new ConfirmEmail());
 
         return back()->with('status', 'Please check your email for link');
 

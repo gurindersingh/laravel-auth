@@ -34,7 +34,7 @@ Route::namespace('Gurinder\LaravelAuth\Http\Controllers')->group(function () {
     Route::post('email-confirmation/resend', 'EmailVerificationController@create')
         ->name('email.confirmation.create')->middleware(['throttle:10,5', 'web', 'guest']);
 
-    Route::get('email-confirmation/{token}', 'EmailVerificationController@confirm')
+    Route::get('email-confirmation/{data}', 'EmailVerificationController@confirm')
         ->name('email.confirmation.confirm')->middleware(['web', 'guest']);
 
     // Socialite
