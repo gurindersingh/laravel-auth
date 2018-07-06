@@ -15,9 +15,9 @@ class AuthServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__ . '/Routes/web.php');
 
-        $this->loadViewsFrom(__DIR__ . '/Views', 'gauth');
+        $this->loadViewsFrom(__DIR__ . '/views', 'gauth');
 
-        $this->publishes([__DIR__ . '/Views' => $this->app->resourcePath('views/vendor/acl')], 'gauth::views');
+        $this->publishes([__DIR__ . '/views' => $this->app->resourcePath('views/vendor/acl')], 'gauth::views');
 
         $this->app['router']->aliasMiddleware('ConfirmedEmail', ConfirmedEmail::class);
     }
