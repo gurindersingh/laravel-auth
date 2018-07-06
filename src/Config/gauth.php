@@ -21,13 +21,13 @@ return [
     ],
 
     // Redirect path after user is successfulle logged in
-    'redirect_path_after_login'              => '/login-successful',
+    'redirect_path_after_login'              => '/home',
 
     // Redirect path after user is successfulle reseted password
-    'redirect_path_after_password_reset'     => '/password-reset-done',
+    'redirect_path_after_password_reset'     => '/home',
 
     // Redirect path after user registered and email confiremed via mail
-    'redirect_path_after_email_confirmation' => '/email-is-confirmed',
+    'redirect_path_after_email_confirmation' => '/home',
 
     // User model must have a method $user->assignRole($roles)
     // in order to this works
