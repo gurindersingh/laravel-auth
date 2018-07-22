@@ -31,8 +31,6 @@ if (!function_exists('registerationOpen')) {
      */
     function registerationOpen($default = true)
     {
-        $default = config('gauth.registration_open', $default);
-
-        return (boolean) config('auth.registeration_open', $default);
+        return (boolean) config('gauth.registration_open', $default);
     }
 }
