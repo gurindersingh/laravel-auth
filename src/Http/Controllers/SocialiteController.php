@@ -20,8 +20,8 @@ class SocialiteController extends Controller
      */
     public function toProvider($provider)
     {
-        if (!$this->registerationOpen()) {
-            abort(404);
+        if (!registerationOpen()) {
+            abort(403, "Registeration is closed at the moment");
         }
 
         $driver = Socialite::driver($provider);
@@ -46,8 +46,8 @@ class SocialiteController extends Controller
      */
     public function fromProvider(SocialiteRequest $request, $provider)
     {
-        if (!$this->registerationOpen()) {
-            abort(404);
+        if (!registerationOpen()) {
+            abort(403, "Registeration is closed at the moment");
         }
 
         $driver = Socialite::driver($provider);
@@ -55,11 +55,6 @@ class SocialiteController extends Controller
         $user = !$this->hasInvalidState() ? $driver->stateless()->user() : $driver->user();
 
         return $request->handleCallback($user, $provider);
-    }
-
-    protected function registerationOpen()
-    {
-        return (boolean)config('gauth.registration_open', true);
     }
 
     /**

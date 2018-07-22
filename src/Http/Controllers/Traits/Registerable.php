@@ -99,6 +99,10 @@ trait Registerable
      */
     public function register(Request $request)
     {
+        if (!registerationOpen()) {
+            abort(403, "Registeration is closed at the moment");
+        }
+
         $this->request = $request;
 
         $this->validator($request->all())->validate();
@@ -157,14 +161,6 @@ trait Registerable
         }
 
         return redirect()->route('email.confirmation.form');
-    }
-
-    /**
-     * @return bool
-     */
-    protected function registerationOpen()
-    {
-        return (boolean)config('gauth.registration_open', true);
     }
 
     /**

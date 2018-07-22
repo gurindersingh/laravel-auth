@@ -3,7 +3,9 @@
 namespace Gurinder\LaravelAuth;
 
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Compilers\BladeCompiler;
 use Gurinder\LaravelAuth\Middlewares\ConfirmedEmail;
 
 class AuthServiceProvider extends ServiceProvider
@@ -26,6 +28,26 @@ class AuthServiceProvider extends ServiceProvider
     {
 
         $this->mergeConfigFrom(__DIR__ . '/Config/gauth.php', 'gauth');
+
+        $this->registerBladeExtensions();
+
+    }
+
+    protected function registerBladeExtensions() 
+    {
+
+        $this->app->afterResolving('blade.compiler', function (BladeCompiler $bladeCompiler) {
+
+            $bladeCompiler->directive('registerationOpen', function ($arguments) {            
+                $open = !Auth::check() && registerationOpen() ? true : false;
+                return "<?php if ($open) { ?>";
+            });
+
+            $bladeCompiler->directive('endRegisterationOpen', function () {
+                return '<?php endif; ?>';
+            });
+
+        });
 
     }
 

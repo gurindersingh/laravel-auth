@@ -19,3 +19,22 @@ if (!function_exists('removeQueryFromUrl')) {
         return "{$url['scheme']}://{$url['host']}{$url['path']}{$concat}";
     }
 }
+
+if (!function_exists('registerationOpen')) {
+
+    /**
+     *
+     * Check if registeration is open or closed
+     *
+     * @param boolean $defualt
+     * @return boolean
+     */
+    function registerationOpen($default = true)
+    {
+        if(config('registeration_open')) {
+            return (boolean) config('registeration_open');
+        }
+
+        return (boolean)config('gauth.registration_open', $default);
+    }
+}

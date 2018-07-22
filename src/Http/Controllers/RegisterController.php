@@ -29,6 +29,10 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
+        if (!registerationOpen()) {
+            abort(403, "Registeration is closed at the moment");
+        }
+
         if (is_array($this->nameFields)) {
 
             $nameFields = $this->nameFields;
