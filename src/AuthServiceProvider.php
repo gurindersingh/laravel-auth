@@ -38,11 +38,11 @@ class AuthServiceProvider extends ServiceProvider
 
         $this->app->afterResolving('blade.compiler', function (BladeCompiler $bladeCompiler) {
 
-            $bladeCompiler->directive('aopen', function () {
+            $bladeCompiler->directive('registerationOpen', function () {
                 return "<?php if (!auth()->check() && registerationOpen() ? true : false): ?>";
             });
 
-            $bladeCompiler->directive('endaopen', function () {
+            $bladeCompiler->directive('endRegisterationOpen', function () {
                 return '<?php endif; ?>';
             });
 
