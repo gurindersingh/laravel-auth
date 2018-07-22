@@ -26,15 +26,13 @@ if (!function_exists('registerationOpen')) {
      *
      * Check if registeration is open or closed
      *
-     * @param boolean $defualt
+     * @param boolean $default
      * @return boolean
      */
     function registerationOpen($default = true)
     {
-        if(config('registeration_open')) {
-            return (boolean) config('registeration_open');
-        }
+        $default = config('gauth.registration_open', $default);
 
-        return (boolean)config('gauth.registration_open', $default);
+        return (boolean) config('auth.registeration_open', $default);
     }
 }
