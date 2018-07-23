@@ -67,10 +67,15 @@
 									</button>
 									
 									<div class="">
+									
 										<a href="{{ route('password.request') }}"
-										   class="mr-3">Forget Password</a>
+										   class="">Forget Password</a>
+
+										@registerationOpen()
 										<a href="{{ route('register') }}"
-										   class="">Sign up</a>
+										   class="ml-3">Sign up</a>
+										@endRegisterationOpen
+										
 									</div>
 								
 								</div>
