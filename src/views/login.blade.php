@@ -75,15 +75,15 @@
 								
 								</div>
 								
-								<hr>
-								
 								@registerationOpen()
-								<div class="">
-									<p class="text-center">Login using following</p>
+									<hr>
 									
-									@include('gauth::social-links')
-									
-								</div>
+									<div class="">
+										<p class="text-center">Login using following</p>
+										
+										@include('gauth::social-links')
+										
+									</div>
 								@endRegisterationOpen
 							
 							</fieldset>
