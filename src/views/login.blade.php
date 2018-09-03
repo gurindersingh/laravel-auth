@@ -81,14 +81,16 @@
 								</div>
 								
 								@registerationOpen()
-									<hr>
-									
-									<div class="">
-										<p class="text-center">Login using following</p>
+									@if(config('gauth.social_providers.enable'))
+										<hr>
 										
-										@include('gauth::social-links')
-										
-									</div>
+										<div class="">
+											<p class="text-center">Login using following</p>
+											
+											@include('gauth::social-links')
+											
+										</div>
+									@endif
 								@endRegisterationOpen
 							
 							</fieldset>

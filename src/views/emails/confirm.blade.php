@@ -8,11 +8,12 @@
 			
 			<div class="col-lg-12 pt-5">
 				
-				<div class="mx-auto" style="width: 500px; max-width: 90%">
+				<div class="mx-auto" style="width: 600px; max-width: 90%">
 					
 					<!-- Title -->
 					<div class="">
-						<h1 class="text-center text-uppercase h4">Confirm Your Email Or Resend Email Confirmation</h1>
+						<h1 class="text-center h4">Please confirm your email address before proceeding</h1>
+						<h3 class="text-center h6">You can also resend confirmation</h3>
 					</div>
 					
 					<hr>

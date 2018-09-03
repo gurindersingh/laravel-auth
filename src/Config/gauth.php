@@ -44,6 +44,16 @@ return [
     // Previous Url config
     'previous_url'                           => [
         'name' => 'previousUrl'
+    ],
+
+    'social_providers' => [
+        'enable'    => true,
+        'available' => [
+            'google'   => true,
+            'twitter'  => true,
+            'github'   => true,
+            'facebook' => true,
+        ]
     ]
 
 ];

@@ -39,7 +39,6 @@
 									       name="password"
 									       class="form-control input"
 									       id="password"
-									       value="password"
 									       placeholder="Password...">
 								</div>
 								
@@ -49,7 +48,6 @@
 									       name="password_confirmation"
 									       class="form-control input"
 									       id="password_confirmation"
-									       value="password"
 									       placeholder="Confirm password...">
 								</div>
 								

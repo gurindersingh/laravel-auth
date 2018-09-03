@@ -79,14 +79,18 @@
 									</div>
 								</div>
 								
-								<hr>
+								@if(config('gauth.social_providers.enable'))
 								
-								<div class="">
-									<p class="text-center">Sign up using following</p>
+									<hr>
 									
-									@include('gauth::social-links')
+									<div class="">
+										<p class="text-center">Sign up using following</p>
+										
+										@include('gauth::social-links')
+										
+									</div>
 									
-								</div>
+								@endif
 							
 							</fieldset>
 						</form>

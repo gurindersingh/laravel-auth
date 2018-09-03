@@ -29,7 +29,7 @@ class UnverifiedEmailException extends Exception
      */
     public function render()
     {
-        return redirect()->route( 'email.confirmation.show' )
+        return redirect()->route( 'email.confirmation.create' ) 
             ->with( [
                 'email'   => $this->email ?: NULL,
                 'message' => 'Please verify your email before proceeding.'
